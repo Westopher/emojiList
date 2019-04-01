@@ -26,7 +26,6 @@ class EmojiVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         cell?.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
         cell?.detailTextLabel?.text = emoji.description
-        var error = "error"
         
         return cell!
     }
