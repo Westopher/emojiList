@@ -10,13 +10,25 @@ import UIKit
 
 class EmojiVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return emojis.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell.AccessoryType.checkmark = true
-        return
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell")
+        
+        let emoji = emojis[indexPath.row]
+        
+        cell?.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
+        cell?.detailTextLabel?.text = emoji.description
+        var error = "error"
+        
+        return cell!
     }
     
 
