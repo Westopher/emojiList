@@ -10,6 +10,15 @@ import UIKit
 
 class EmojiVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        
+        let tableViewEditingMode = tableView.isEditing
+        tableView.setEditing(!tableViewEditingMode, animated: true)
+        
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -21,19 +30,31 @@ class EmojiVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell")
-        
         let emoji = emojis[indexPath.row]
         
         cell?.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
         cell?.detailTextLabel?.text = emoji.description
         
+        cell?.showsReorderControl = true
+        
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        let emoji = emojis[indexPath.row]
+        print("\(emoji.symbol) \(indexPath)")
+        
+        }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedEmoji = emojis.remove(at: sourceIndexPath.row)
+        emojis.insert(movedEmoji, at: destinationIndexPath.row)
+        tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
      
     }
     

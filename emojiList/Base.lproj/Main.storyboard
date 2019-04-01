@@ -64,7 +64,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1Y9-VI-0ML"/>
+                    <navigationItem key="navigationItem" id="1Y9-VI-0ML">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="wfP-KS-Rj9">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="e5x-Ae-Shb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="cf4-L4-tbB" id="S3V-VD-i8N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
